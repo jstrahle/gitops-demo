@@ -1,0 +1,9 @@
+apiVersion: console.openshift.io/v1
+kind: ConsoleNotification
+metadata:
+  name: managed-by-gitops
+spec:
+  text: "This cluster is managed by GitOps"
+  location: BannerTop
+  color: "#ffffff"
+  backgroundColor: "#0066cc"
