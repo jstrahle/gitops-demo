@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: misc-configs
+  namespace: openshift-gitops
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/jstrahle/gitops-demo.git
+    targetRevision: main
+    path: misc-configs
+  destination:
+    server: https://kubernetes.default.svc   # the local cluster
+    namespace: openshift-gitops              # fallback ns for namespaced resources
+  syncPolicy:
+    automated:
+      prune: true        # delete resources removed from Git
+      selfHeal: true     # revert manual drift back to Git state
+    syncOptions:
+      - CreateNamespace=true
