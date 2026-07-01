@@ -10,9 +10,8 @@ spec:
     route:
       enabled: true        # gives developers a URL to reach the UI
   sso:
-    provider: dex
     dex:
-      openShiftOAuth: true # devs log in with their OpenShift credentials
+      openShiftOAuth: true
   rbac:
     defaultPolicy: "role:readonly"
     scopes: "[groups]"
