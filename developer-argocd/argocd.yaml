@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ArgoCD
+metadata:
+  name: dev-argocd
+  namespace: dev-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  server:
+    route:
+      enabled: true        # gives developers a URL to reach the UI
+  sso:
+    provider: dex
+    dex:
+      openShiftOAuth: true # devs log in with their OpenShift credentials
+  rbac:
+    defaultPolicy: "role:readonly"
+    scopes: "[groups]"
+    policy: |
+      g, team-a-admins, role:admin
+      g, system:cluster-admins, role:admin
+      g, cluster-admins, role:admin
+      g, admin, role:admin
