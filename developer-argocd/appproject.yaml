@@ -10,8 +10,6 @@ spec:
   sourceRepos:
     - 'https://github.com/YOUR_ORG/team-a-apps.git'   # only these repos
   destinations:
-    - namespace: team-a-dev
-      server: https://kubernetes.default.svc
-    - namespace: team-a-stage
+    - namespace: virtual-machines
       server: https://kubernetes.default.svc
   clusterResourceWhitelist: []      # empty = no cluster-scoped resources allowed
