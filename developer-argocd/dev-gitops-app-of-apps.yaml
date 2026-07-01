@@ -1,20 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: dev-gitops-app-of-apps
-  namespace: dev-gitops
+  name: dev-argocd-apps
+  namespace: dev-gitops                 # <-- the load-bearing line; dev-argocd owns it
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"   # after the instance + AppProject exist
 spec:
-  project: default
+  project: default                      # dev-argocd's own default project, NOT team-a
   source:
     repoURL: https://github.com/jstrahle/gitops-demo-developer.git
     targetRevision: main
     path: applications
+    directory:
+      recurse: true
   destination:
     server: https://kubernetes.default.svc
-    namespace: openshift-gitops
+    namespace: dev-gitops               # where the child Application objects land
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - ApplyOutOfSyncOnly=true
+    automated: { prune: true, selfHeal: true }
