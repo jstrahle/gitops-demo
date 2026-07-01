@@ -13,7 +13,7 @@ spec:
     dex:
       openShiftOAuth: true
   rbac:
-    defaultPolicy: "role:readonly"
+    defaultPolicy: "role:admin"
     scopes: "[groups]"
     policy: |
       g, team-a-admins, role:admin
