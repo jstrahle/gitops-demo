@@ -1,0 +1,11 @@
+apiVersion: console.openshift.io/v1
+kind: ConsoleLink
+metadata:
+  name: dev-argocd
+spec:
+  location: ApplicationMenu
+  text: Dev Argo CD
+  href: https://dev-argocd-server-dev-gitops.apps.cluster-dmx58.dynamic2.redhatworkshops.io
+  applicationMenu:
+    section: OpenShift GitOps
+    imageURL: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
